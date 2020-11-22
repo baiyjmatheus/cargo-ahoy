@@ -1,4 +1,3 @@
-from src.core.exceptions.resource_exists_exception import ResourceExists
 from src.core.repositories import VesselRepository
 
 

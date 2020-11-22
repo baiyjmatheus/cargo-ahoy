@@ -6,7 +6,6 @@ from src.core.models import Vessel as VesselModel
 from src.core.models import Equipment as EquipmentModel
 from app import create_app, db
 
-
 app = create_app()
 migrate = Migrate(app, db)
 
