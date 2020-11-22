@@ -28,4 +28,12 @@ def get_blueprint() -> Blueprint:
         except ResourceNotFound as e:
             return Response(e.message, HTTPStatus.NOT_FOUND)
 
+    @equipment_blueprint.route('/inactivate', methods=['PATCH'])
+    def inactivate_equipments(vessel_code):
+        try:
+            data = request.get_json()
+            return jsonify(equipment_service.inactivate_equipments(vessel_code, data))
+        except ResourceNotFound as e:
+            return Response(e.message, HTTPStatus.NOT_FOUND)
+
     return equipment_blueprint

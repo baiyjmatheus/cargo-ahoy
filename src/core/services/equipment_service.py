@@ -25,4 +25,14 @@ class EquipmentService:
     def get_all_active_equipments_by_vessel(self, vessel_code):
         vessel = self.vessel_service.find_by_code(vessel_code)
         vessel_id = vessel.get('id')
-        return self.equipment_repository.find_all_active_by_vessel(vessel_id)
+        return self.equipment_repository.find_vessel_active_equipments_by_code(vessel_id)
+
+    def inactivate_equipments(self, vessel_code, data):
+        vessel = self.vessel_service.find_by_code(vessel_code)
+        vessel_id = vessel.get('id')
+        equipment_codes = data.get('codes')
+
+        return self.equipment_repository.inactivate_vessel_equipments_by_code(vessel_id, equipment_codes)
+
+
+
