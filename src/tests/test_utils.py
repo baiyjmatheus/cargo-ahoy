@@ -1,5 +1,5 @@
 import os
-from utils import get_env_variable
+from src.utils.env_var import get_env_variable
 
 
 def test_get_env_variable_fail():
