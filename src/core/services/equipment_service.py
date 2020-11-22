@@ -21,3 +21,8 @@ class EquipmentService:
                                                           vessel_id=vessel_id,
                                                           location=location,
                                                           status=status)
+
+    def get_all_active_equipments_by_vessel(self, vessel_code):
+        vessel = self.vessel_service.find_by_code(vessel_code)
+        vessel_id = vessel.get('id')
+        return self.equipment_repository.find_all_active_by_vessel(vessel_id)

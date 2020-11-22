@@ -3,6 +3,7 @@ from sqlalchemy.exc import IntegrityError
 from src.core.exceptions.resource_exists_exception import ResourceExists
 from src.core.exceptions.resource_not_found_exception import ResourceNotFound
 from src.core.models import Equipment
+from src.core.models.enums.equipment_status import EquipmentStatus
 
 
 class EquipmentRepository:
@@ -24,6 +25,25 @@ class EquipmentRepository:
         }
 
         return result
+
+    def find_all_active_by_vessel(self, vessel_id):
+        equipments = Equipment.query.filter_by(vessel_id=vessel_id,
+                                               status=EquipmentStatus.ACTIVE)
+
+        results = []
+        for equipment in equipments:
+            result = {
+                'id': equipment.id,
+                'code': equipment.code,
+                'name': equipment.name,
+                'status': equipment.status.value,
+                'location': equipment.location.value,
+                'created_at': str(equipment.created_at),
+                'vessel_id': equipment.vessel_id
+            }
+            results.append(result)
+
+        return results
 
     def create_equipment(self,
                          code,
