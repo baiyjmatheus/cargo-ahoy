@@ -61,16 +61,6 @@ To run the tests, simply execute: `pytest`
 }
 ```
 
-- Create a new vessel equipment: `POST /api/vessels/<vessel_code>/equipments/`
-```json
-{
-    "code": "MV103",
-    "name": "turbine",
-    "location": "BRAZIL",
-    "status": "ACTIVE",
-}
-```
-
 - Get all active vessel equipments: `GET /api/vessels/<vessel_code>/equipments/`
 
 - Inactivate vessel equipments: `PATCH /api/vessels/<vessel_code>/equipments/inactivate`
