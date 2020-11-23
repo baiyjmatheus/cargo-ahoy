@@ -39,17 +39,15 @@ class EquipmentRepository:
                          vessel_id,
                          location=None,
                          status=None):
-        try:
-            equipment = Equipment(code=code,
-                                  name=name,
-                                  vessel_id=vessel_id,
-                                  location=location,
-                                  status=status)
-            equipment.save()
-        except IntegrityError:
-            Equipment.rollback()
+        if self._equipment_exists(code=code):
             raise ResourceExists('Equipment already exists')
 
+        equipment = Equipment(code=code,
+                              name=name,
+                              vessel_id=vessel_id,
+                              location=location,
+                              status=status)
+        equipment.save()
         result = self._to_dict(equipment)
 
         return result
@@ -65,6 +63,10 @@ class EquipmentRepository:
         results = list(map(self._to_dict, equipments))
 
         return results
+
+    def _equipment_exists(self, code):
+        return Equipment.query.filter_by(code=code).scalar() is not None
+
 
     def _to_model(self, equipment):
         return Equipment(code=equipment.get('code'),
