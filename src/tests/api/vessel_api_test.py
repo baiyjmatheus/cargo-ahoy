@@ -13,7 +13,7 @@ class TestVesselApi:
 
         # when
         client = app.test_client()
-        response = client.post('/api/vessels/', json=dict(code='123'))
+        response = client.post('/api/vessels/', json=dict(code='AM123'))
 
         # then
         assert response
@@ -26,7 +26,7 @@ class TestVesselApi:
 
         # when
         client = app.test_client()
-        response = client.post('/api/vessels/', json=dict(code='123'))
+        response = client.post('/api/vessels/', json=dict(code='AM123'))
 
         # then
         assert response.status_code == HTTPStatus.CONFLICT
@@ -45,7 +45,7 @@ class TestVesselApi:
 
         # when
         client = app.test_client()
-        response = client.get('/api/vessels/123')
+        response = client.get('/api/vessels/AM123')
 
         # then
         assert response.status_code == HTTPStatus.OK
@@ -58,7 +58,7 @@ class TestVesselApi:
 
         # when
         client = app.test_client()
-        response = client.get('/api/vessels/123')
+        response = client.get('/api/vessels/AM123')
 
         # then
         assert response.status_code == HTTPStatus.NOT_FOUND

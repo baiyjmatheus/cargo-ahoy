@@ -55,16 +55,12 @@ class EquipmentRepository:
         return result
 
     def inactivate_vessel_equipments_by_code(self, vessel_id, equipments_code):
-        try:
-            equipments = []
-            for code in equipments_code:
-                equipment = self._find_vessel_equipment_by_code(vessel_id=vessel_id, code=code)
-                equipment.status = EquipmentStatus.INACTIVE
-                equipment.save()
-                equipments.append(equipment)
-        except IntegrityError:
-            Equipment.rollback()
-            raise ResourceExists('Equipment already exists')
+        equipments = []
+        for code in equipments_code:
+            equipment = self._find_vessel_equipment_by_code(vessel_id=vessel_id, code=code)
+            equipment.status = EquipmentStatus.INACTIVE
+            equipment.save()
+            equipments.append(equipment)
 
         results = list(map(self._to_dict, equipments))
 
