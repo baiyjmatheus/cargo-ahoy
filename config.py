@@ -4,6 +4,7 @@ POSTGRES_URL = get_env_variable('POSTGRES_URL')
 POSTGRES_USER = get_env_variable('POSTGRES_USER')
 POSTGRES_PASSWORD = get_env_variable('POSTGRES_PASSWORD')
 POSTGRES_DB = get_env_variable('POSTGRES_DB')
+POSTGRES_DB_TEST = get_env_variable('POSTGRES_DB_TEST')
 
 
 class Config(object):
@@ -30,7 +31,12 @@ class DevelopmentConfig(Config):
 
 class TestConfig(Config):
     TESTING = True
-    SQLALCHEMY_DATABASE_URI = "postgresql+psycopg2://root:root@localhost:5432/cargoahoytest"
+    uri_template = 'postgresql+psycopg2://{user}:{pw}@{url}/{db}'
+    SQLALCHEMY_DATABASE_URI = uri_template.format(
+        user=POSTGRES_USER,
+        pw=POSTGRES_PASSWORD,
+        url=POSTGRES_URL,
+        db=POSTGRES_DB_TEST)
 
 
 class ProductionConfig(Config):
