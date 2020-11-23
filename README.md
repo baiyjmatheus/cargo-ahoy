@@ -45,7 +45,7 @@ To run the tests, simply execute: `pytest`
 - Create a new vessel: `POST /api/vessels/`
 ```json
 {
-    "code": "MV102" *required
+    "code": "MV102"
 }
 ```
 
@@ -54,20 +54,20 @@ To run the tests, simply execute: `pytest`
 - Create a new vessel equipment: `POST /api/vessels/<vessel_code>/equipments/`
 ```json
 {
-    "code": "MV103", *required
-    "name": "turbine", *required
-    "location": "BRAZIL", EquipmentLocation
-    "status": "ACTIVE", EquipmentStatus
+    "code": "MV103", 
+    "name": "turbine", 
+    "location": "BRAZIL", 
+    "status": "ACTIVE",
 }
 ```
 
 - Create a new vessel equipment: `POST /api/vessels/<vessel_code>/equipments/`
 ```json
 {
-    "code": "MV103", *required
-    "name": "turbine", *required
-    "location": "BRAZIL", EquipmentLocation
-    "status": "ACTIVE", EquipmentStatus
+    "code": "MV103",
+    "name": "turbine",
+    "location": "BRAZIL",
+    "status": "ACTIVE",
 }
 ```
 
@@ -76,7 +76,7 @@ To run the tests, simply execute: `pytest`
 - Inactivate vessel equipments: `PATCH /api/vessels/<vessel_code>/equipments/inactivate`
 ```json
 {
-    "codes": ["MV103", "MV102"], *required
+    "codes": ["MV103", "MV102"]
 }
 ```
  
