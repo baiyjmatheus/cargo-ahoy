@@ -30,6 +30,7 @@ class DevelopmentConfig(Config):
 
 class TestConfig(Config):
     TESTING = True
+    SQLALCHEMY_DATABASE_URI = "postgresql+psycopg2://root:root@localhost:5432/cargoahoytest"
 
 
 class ProductionConfig(Config):
