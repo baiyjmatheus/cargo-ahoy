@@ -11,6 +11,8 @@
 - Install dependencies
 `pip install -r requirements.txt`
 
+*If pip have problems installing `psycopg2`, you can also install a binary version separately `pip install psycopg2-binary` and remove `psycopg2` from `requirements.txt`.
+
 - In Postgres, run the following to create the databases:
 
 ```sql
@@ -25,7 +27,7 @@ create database cargoahoytest;
 chmod +x cargo-ahoy.sh run-migrations.sh
 ```
 - Run scripts
-`./cargo-ahoy.sh` and 
+`source ./cargo-ahoy.sh` and
 `./run-migrations.sh`
 
 ### Running application locally
