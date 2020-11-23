@@ -1,4 +1,4 @@
-# Cargo Ahoy
+# cargo-ahoy
 
 ### Requirements
 
